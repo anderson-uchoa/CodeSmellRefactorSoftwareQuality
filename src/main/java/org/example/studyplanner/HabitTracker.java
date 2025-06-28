@@ -34,6 +34,24 @@ public class HabitTracker {
         return "Habits: " + response.toString();
     }
 
+    public String formatAllHabitsWithDates() {
+        StringBuilder response = new StringBuilder();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        for (Habit habit : habits) {
+            response.append("[ Habit: ")
+                    .append(habit.getName())
+                    .append(". Records: ");
+
+            List<LocalDateTime> records = getHabitRecords(habit.getId());
+            for (LocalDateTime record : records) {
+                response.append(record.format(fmt)).append(", ");
+            }
+            response.append("]");
+        }
+        return response.toString();
+    }
+
     public Habit getHabitById(Integer id){
         return this.habits.stream()
                 .filter(habit -> Objects.equals(habit.getId(), id))
