@@ -51,7 +51,9 @@ class StudyCardsControllerTest {
                 "Response should contain 'Test LeitnerSystem'");
 
         if(response.contains("Test Random Leitner Question 1")){
-            assertTrue(response.contains("Test Random Leitner Answer 1"));
+            assertTrue(response.contains("Test Random Leitner Answer 1"),
+                    "Expected 'Test Random Leitner Answer 1' not found in response");
+
         } else {
             assertTrue(response.contains("Test Random Leitner Answer 2"));
         }
