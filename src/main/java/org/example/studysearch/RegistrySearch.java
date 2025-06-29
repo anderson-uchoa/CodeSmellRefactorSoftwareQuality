@@ -21,15 +21,26 @@ public class RegistrySearch implements Search<String>{
         return searchLog;
     }
 
-    private List<String> handleRegistrySearch(String text){
+    private List<String> handleRegistrySearch(String text) {
+        // 1) collect all the raw results
+        List<String> results = collectRegistryResults(text);
+        // 2) record/log the search and append the formatted entry
+        results.add(logAndFormatEntry(text));
+        return results;
+    }
+
+    private List<String> collectRegistryResults(String text) {
         List<String> results = new ArrayList<>();
         results.addAll(CardManager.getCardManager().searchInCards(text));
         results.addAll(HabitTracker.getHabitTracker().searchInHabits(text));
         results.addAll(TodoTracker.getInstance().searchInTodos(text));
         results.addAll(StudyTaskManager.getStudyTaskManager().searchInRegistries(text));
-        this.searchLog.addSearchHistory(text);
-        this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
-        results.add("\nLogged in: " + this.searchLog.getLogName());
         return results;
+    }
+
+    private String logAndFormatEntry(String text) {
+        // SearchLog.recordAndFormatEntry adds history, bumps usage count,
+        // and returns the formatted “\nLogged in: …” string.
+        return searchLog.recordAndFormatEntry(text);
     }
 }
