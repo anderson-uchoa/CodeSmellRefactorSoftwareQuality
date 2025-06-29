@@ -49,7 +49,7 @@ class CardManagerTest {
     @DisplayName("Search Card Answer Test")
     void searchAnswerInCards() {
         List<String> response = manager.searchInCards("Search");
-        assertTrue(verifyCardAnswer(response));
+        assertTrue(verifyCardAnswer(response), "A busca pela resposta não retornou os resultados esperados.");
 
     }
 }
