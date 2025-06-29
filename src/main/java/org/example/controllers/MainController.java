@@ -2,6 +2,8 @@ package org.example.controllers;
 
 import java.util.Map;
 import java.util.Scanner;
+import org.example.InvalidActionException;
+
 
 public class MainController {
     private StudyCardsController studyCardsController;
@@ -17,18 +19,25 @@ public class MainController {
         this.studySearchController = studySearchController;
     }
 
+
+
     public static String getInput(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    public static String validateInput(Map<String, Runnable> actions) throws Exception {
+    public static String validateInput(Map<String, Runnable> actions) throws InvalidActionException {
         String input = getInput();
-        if(input.equals("0")){return null;}
+        if (input.equals("0")) {
+            return null;
+        }
         Runnable ac = actions.get(input);
-        if(ac == null) throw new Exception("Invalid action");
+        if (ac == null) {
+            throw new InvalidActionException("Ação inválida: " + input);
+        }
         return input;
     }
+
 
     public void handleUserInput(String input){
         switch (input){
@@ -39,6 +48,11 @@ public class MainController {
             default -> {
                 return;
             }
+
         }
+
     }
+
 }
+
+
