@@ -21,12 +21,12 @@ public class MaterialSearch implements Search<String>{
         return searchLog;
     }
 
-    private List<String> handleMaterialSearch(String text){
-        List<String> results = new ArrayList<>();
-        results.addAll(StudyMaterial.getStudyMaterial().searchInMaterials(text));
-        this.searchLog.addSearchHistory(text);
-        this.searchLog.setNumUsages(this.searchLog.getNumUsages() + 1);
-        results.add("\nLogged in: " + this.searchLog.getLogName());
+    private List<String> handleMaterialSearch(String text) {
+        List<String> results = new ArrayList<>(
+                StudyMaterial.getStudyMaterial().searchInMaterials(text)
+        );
+        String logEntry = searchLog.recordAndFormatEntry(text);
+        results.add(logEntry);
         return results;
     }
 

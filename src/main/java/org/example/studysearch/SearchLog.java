@@ -20,6 +20,12 @@ public class SearchLog {
         isLocked = false;
     }
 
+    public String recordAndFormatEntry(String text) {
+        addSearchHistory(text);
+        setNumUsages(getNumUsages() + 1);
+        return "\nLogged in: " + getLogName();
+    }
+
     public void recordSearch(String text) {
         addSearchHistory(text);
         setNumUsages(getNumUsages() + 1);
