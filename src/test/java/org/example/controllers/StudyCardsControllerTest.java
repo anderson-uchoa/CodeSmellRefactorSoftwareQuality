@@ -55,7 +55,9 @@ class StudyCardsControllerTest {
                     "Expected 'Test Random Leitner Answer 1' not found in response");
 
         } else {
-            assertTrue(response.contains("Test Random Leitner Answer 2"));
+            assertTrue(response.contains("Test Random Leitner Answer 2"),
+                    "Expected 'Test Random Leitner Answer 2' not found in response");
+
         }
 
     }
