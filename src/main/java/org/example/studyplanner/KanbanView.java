@@ -66,7 +66,7 @@ public class KanbanView {
         try{
             ToDo toRemove = this.todoTracker.getToDoById(id);
             if(toRemove == null) {
-                throw new Exception("No todo found with id: " + id);
+                throw new IllegalArgumentException("No todo found with id: " + id);
             }
             kanban.get(state).remove(toRemove);
         } catch(Exception e){
