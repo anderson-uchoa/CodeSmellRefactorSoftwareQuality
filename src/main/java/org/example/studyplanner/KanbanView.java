@@ -59,7 +59,7 @@ public class KanbanView {
             }
             kanban.get(state).remove(toRemove);
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
     public void removeToDoFromKanban(State state, Integer id) throws Exception {
