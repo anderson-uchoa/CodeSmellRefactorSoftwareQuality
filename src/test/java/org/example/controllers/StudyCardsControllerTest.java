@@ -45,7 +45,7 @@ class StudyCardsControllerTest {
     void getRandomCardFromBox() {
         String response = studyCardsController.getRandomCardFromBox();
         if(response == null){
-            fail("Response from studyCardsController.getRandomCardFromBox() was null");
+            fail();
         }
         assertTrue(response.contains("Test LeitnerSystem"),
                 "Response should contain 'Test LeitnerSystem'");
