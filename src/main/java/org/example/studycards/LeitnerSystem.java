@@ -79,7 +79,7 @@ public class LeitnerSystem extends StudyMethod{
 
     public void boxIdValidation(Integer boxId) throws Exception {
         if(boxId == null || boxId > (boxes.size()-1) || boxId <= 0){
-            throw new Exception("Invalid box ID");
+            throw new IllegalArgumentException("Invalid box ID");
         }
     }
 
