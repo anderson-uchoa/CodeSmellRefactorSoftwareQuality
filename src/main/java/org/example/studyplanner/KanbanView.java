@@ -31,7 +31,7 @@ public class KanbanView {
         try{
             Habit toAdd = this.habitTracker.getHabitById(id);
             if(toAdd == null){
-                throw new Exception("Habit not found with id: " + id);
+                throw new IllegalArgumentException("Habit not found with id: " + id);
             }
             kanban.get(state).add(toAdd);
         } catch (Exception e){
