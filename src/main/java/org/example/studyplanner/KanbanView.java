@@ -55,7 +55,7 @@ public class KanbanView {
         try{
             Habit toRemove = this.habitTracker.getHabitById(id);
             if(toRemove == null) {
-                throw new Exception("No habit found with id: " + id);
+                throw new IllegalArgumentException("No habit found with id: " + id);
             }
             kanban.get(state).remove(toRemove);
         }catch (Exception e){
