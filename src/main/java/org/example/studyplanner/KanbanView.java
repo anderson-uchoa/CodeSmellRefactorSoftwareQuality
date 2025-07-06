@@ -35,7 +35,7 @@ public class KanbanView {
             }
             kanban.get(state).add(toAdd);
         } catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
