@@ -47,9 +47,7 @@ class StudyCardsControllerTest {
         if(response == null){
             fail();
         }
-        assertTrue(response.contains("Test LeitnerSystem"),
-                "Response should contain 'Test LeitnerSystem'");
-
+        assertTrue(response.contains("Test LeitnerSystem"));
         if(response.contains("Test Random Leitner Question 1")){
             assertTrue(response.contains("Test Random Leitner Answer 1"));
         } else {
