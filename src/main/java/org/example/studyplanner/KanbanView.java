@@ -43,11 +43,11 @@ public class KanbanView {
         try{
             ToDo toAdd = this.todoTracker.getToDoById(id);
             if(toAdd == null){
-                throw new Exception("ToDo not found with id: " + id);
+                throw new IllegalArgumentException("ToDo not found with id: " + id);
             }
             kanban.get(state).add(toAdd);
         } catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
