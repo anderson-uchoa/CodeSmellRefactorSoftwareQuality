@@ -88,7 +88,7 @@ public class LeitnerSystem extends StudyMethod{
 
         Box refBox = boxes.get(boxId);
         if(refBox.hasCard(cardId)){
-            throw new Exception("No card Found");
+            throw new IllegalArgumentException("No card Found");
         }
         refBox.removeCard(cardId);
         boxes.get(Math.min(boxId + 1, 4)).addCard(cardId);
@@ -99,7 +99,7 @@ public class LeitnerSystem extends StudyMethod{
 
         Box refBox = boxes.get(boxId);
         if(refBox.hasCard(cardId)){
-            throw new Exception("No card Found");
+            throw new IllegalArgumentException("No card Found");
         }
         refBox.removeCard(cardId);
         boxes.get(Math.max(boxId - 1, 0)).addCard(cardId);
