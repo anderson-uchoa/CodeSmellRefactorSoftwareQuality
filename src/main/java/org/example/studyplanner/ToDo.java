@@ -6,32 +6,28 @@ public class ToDo implements PlannerMaterial {
     private Integer id;
     private String title;
     private String description;
-    private int priority;
+    private PriorityBehavior priorityBehavior;
 
     public ToDo(Integer id, String title, String description, int priority) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.priority = priority;
-    }
-
-    private ToDo(ToDoBuilder builder) {
-        this.id = builder.id;
-        this.title = builder.title;
-        this.description = builder.description;
-        this.priority = builder.priority;
+        this.priorityBehavior = PriorityFactory.create(priority);
     }
 
     @Override
     public String toString() {
-        return MessageFormat.format("[(Priority:{3}) ToDo {0}: {1}, {2}]", id, title, description, priority);
+        return MessageFormat.format(
+                "[(Priority:{0}) ToDo {1}: {2}, {3} - {4}]",
+                getPriority(), id, title, description, getPriorityLabel()
+        );
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {  // ✅ ADICIONADO
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,7 +35,7 @@ public class ToDo implements PlannerMaterial {
         return title;
     }
 
-    public void setTitle(String title) {  // ✅ OPCIONAL
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -47,47 +43,57 @@ public class ToDo implements PlannerMaterial {
         return description;
     }
 
-    public void setDescription(String description) {  // ✅ OPCIONAL
+    public void setDescription(String description) {
         this.description = description;
     }
 
     public int getPriority() {
-        return priority;
+        return priorityBehavior.getValue();
     }
 
-    public void setPriority(int priority) {  // ✅ OPCIONAL
-        this.priority = priority;
+    public void setPriority(int priority) {
+        this.priorityBehavior = PriorityFactory.create(priority);
     }
 
-    // 🔨 Builder Pattern
-    public static class ToDoBuilder {
-        private Integer id;
-        private String title;
-        private String description;
-        private int priority;
+    public String getPriorityLabel() {
+        return priorityBehavior.getLabel();
+    }
 
-        public ToDoBuilder setId(Integer id) {
-            this.id = id;
-            return this;
-        }
+    // Interface para o comportamento de prioridade (Strategy)
+    public interface PriorityBehavior {
+        int getValue();
+        String getLabel();
+    }
 
-        public ToDoBuilder setTitle(String title) {
-            this.title = title;
-            return this;
-        }
+    public static class HighPriority implements PriorityBehavior {
+        public int getValue() { return 1; }
+        public String getLabel() { return "Alta"; }
+    }
 
-        public ToDoBuilder setDescription(String description) {
-            this.description = description;
-            return this;
-        }
+    public static class MediumPriority implements PriorityBehavior {
+        public int getValue() { return 2; }
+        public String getLabel() { return "Média"; }
+    }
 
-        public ToDoBuilder setPriority(int priority) {
-            this.priority = priority;
-            return this;
-        }
+    public static class LowPriority implements PriorityBehavior {
+        public int getValue() { return 3; }
+        public String getLabel() { return "Baixa"; }
+    }
 
-        public ToDo build() {
-            return new ToDo(this);
+    public static class UnknownPriority implements PriorityBehavior {
+        public int getValue() { return 0; }
+        public String getLabel() { return "Desconhecida"; }
+    }
+
+    // Factory para criar as prioridades
+    public static class PriorityFactory {
+        public static PriorityBehavior create(int priority) {
+            return switch (priority) {
+                case 1 -> new HighPriority();
+                case 2 -> new MediumPriority();
+                case 3 -> new LowPriority();
+                default -> new UnknownPriority();
+            };
         }
     }
 }
