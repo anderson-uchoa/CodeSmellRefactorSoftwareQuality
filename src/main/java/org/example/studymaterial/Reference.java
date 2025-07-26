@@ -1,6 +1,6 @@
 package org.example.studymaterial;
 
-public abstract class Reference {
+public class Reference {
     private String title;
     private String description;
     private String link;
