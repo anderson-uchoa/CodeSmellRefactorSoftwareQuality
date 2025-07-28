@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StudyMaterial{
+public final class StudyMaterial{
     List<Reference> references;
     private static StudyMaterial studyMaterial;
     private Map<String, Integer> referenceCount;
