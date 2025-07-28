@@ -29,4 +29,13 @@ public class Card {
         setQuestion(question);
         setAnswer(answer);
     }
+
+    public boolean checkAnswer(String userAnswer) {
+        return this.answer != null && this.answer.equalsIgnoreCase(userAnswer.trim());
+    }
+
+    public String showQuestionFormatted() {
+        return "Pergunta: " + question;
+    }
+
 }

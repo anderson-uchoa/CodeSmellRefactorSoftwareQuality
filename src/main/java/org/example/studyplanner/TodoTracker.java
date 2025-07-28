@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
-public class TodoTracker {
+public final class TodoTracker {
     private List<ToDo> toDos = new ArrayList<>();
     private Map<Integer, List<LocalDateTime>> tracker;
     private Integer nextId;

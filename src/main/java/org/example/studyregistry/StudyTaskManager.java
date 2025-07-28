@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudyTaskManager {
+public final class StudyTaskManager {
     private static StudyTaskManager instance;
     private StudyMaterial studyMaterial = StudyMaterial.getStudyMaterial();
     List<Registry> registryList;

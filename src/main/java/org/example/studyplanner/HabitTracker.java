@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class HabitTracker {
+public final class HabitTracker {
     private List<Habit> habits;
     private Map<Integer, List<LocalDateTime>> tracker;
     private Integer nextId;
