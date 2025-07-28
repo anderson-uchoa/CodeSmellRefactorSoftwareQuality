@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CardManager {
+public final class CardManager {
     private Map<Integer, Card> cards;
     private Integer nextID = 1;
 
     private static CardManager instance = null;
 
     private CardManager() {
-        this.cards = new HashMap<Integer, Card>();
+        this.cards = new HashMap<>();
     }
 
     public static CardManager getCardManager() {
@@ -32,7 +32,7 @@ public class CardManager {
     }
 
     public List<Card> getCards() {
-        return new ArrayList<Card>(cards.values());
+        return new ArrayList<>();
     }
 
     public List<Card> getCards(List<Integer> ids){

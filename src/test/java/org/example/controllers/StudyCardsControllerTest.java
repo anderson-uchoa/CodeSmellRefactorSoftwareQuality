@@ -45,13 +45,19 @@ class StudyCardsControllerTest {
     void getRandomCardFromBox() {
         String response = studyCardsController.getRandomCardFromBox();
         if(response == null){
-            fail();
+            fail("Response from studyCardsController.getRandomCardFromBox() was null");
         }
-        assertTrue(response.contains("Test LeitnerSystem"));
+        assertTrue(response.contains("Test LeitnerSystem"),
+                "Response should contain 'Test LeitnerSystem'");
+
         if(response.contains("Test Random Leitner Question 1")){
-            assertTrue(response.contains("Test Random Leitner Answer 1"));
+            assertTrue(response.contains("Test Random Leitner Answer 1"),
+                    "Expected 'Test Random Leitner Answer 1' not found in response");
+
         } else {
-            assertTrue(response.contains("Test Random Leitner Answer 2"));
+            assertTrue(response.contains("Test Random Leitner Answer 2"),
+                    "Expected 'Test Random Leitner Answer 2' not found in response");
+
         }
 
     }

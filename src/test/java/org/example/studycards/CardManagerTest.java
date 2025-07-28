@@ -40,7 +40,8 @@ class CardManagerTest {
     @DisplayName("Search Card Question Test")
     void searchQuestionInCards() {
         List<String> response = manager.searchInCards("Search");
-        assertTrue(verifyCardQuestion(response));
+        assertTrue(verifyCardQuestion(response), "A busca pela questão não retornou os resultados esperados.");
+
 
     }
     @Test
@@ -48,7 +49,7 @@ class CardManagerTest {
     @DisplayName("Search Card Answer Test")
     void searchAnswerInCards() {
         List<String> response = manager.searchInCards("Search");
-        assertTrue(verifyCardAnswer(response));
+        assertTrue(verifyCardAnswer(response), "A busca pela resposta não retornou os resultados esperados.");
 
     }
 }
