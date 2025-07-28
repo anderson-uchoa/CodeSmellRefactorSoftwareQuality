@@ -26,7 +26,7 @@ public class MainController {
         String input = getInput();
         if(input.equals("0")){return null;}
         Runnable ac = actions.get(input);
-        if(ac == null) throw new Exception("Invalid action");
+        if (ac == null) throw new IllegalArgumentException("Invalid action");
         return input;
     }
 

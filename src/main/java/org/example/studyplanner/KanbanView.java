@@ -31,11 +31,11 @@ public class KanbanView {
         try{
             Habit toAdd = this.habitTracker.getHabitById(id);
             if(toAdd == null){
-                throw new Exception("Habit not found with id: " + id);
+                throw new IllegalArgumentException("Habit not found with id: " + id);
             }
             kanban.get(state).add(toAdd);
         } catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
@@ -43,11 +43,11 @@ public class KanbanView {
         try{
             ToDo toAdd = this.todoTracker.getToDoById(id);
             if(toAdd == null){
-                throw new Exception("ToDo not found with id: " + id);
+                throw new IllegalArgumentException("ToDo not found with id: " + id);
             }
             kanban.get(state).add(toAdd);
         } catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class KanbanView {
         try{
             Habit toRemove = this.habitTracker.getHabitById(id);
             if(toRemove == null) {
-                throw new Exception("No habit found with id: " + id);
+                throw new IllegalArgumentException("No habit found with id: " + id);
             }
             kanban.get(state).remove(toRemove);
         }catch (Exception e){
