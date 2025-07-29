@@ -16,7 +16,7 @@ public class ToDo implements PlannerMaterial{
     }
 
     @Override
-    public String toString() {
+    public String toString( ) {
         return MessageFormat.format("[(Priority:{3}) ToDo {0}: {1}, {2}]", id, title, description, priority);
     }
 
