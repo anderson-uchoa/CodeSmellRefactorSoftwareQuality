@@ -61,7 +61,7 @@ public class Reference {
         isDownloadable = downloadable;
     }
 
-    public int getRating() {
+    public int getRating( ) {
         return rating;
     }
 
