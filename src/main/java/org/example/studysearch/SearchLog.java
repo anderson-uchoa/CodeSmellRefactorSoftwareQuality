@@ -1,9 +1,6 @@
 package org.example.studysearch;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SearchLog {
     private List<String> searchHistory;
@@ -19,20 +16,32 @@ public class SearchLog {
         numUsages = 0;
         isLocked = false;
     }
+
     public void addSearchHistory(String searchHistory) {
         this.searchHistory.add(searchHistory);
+        // Atualiza contagem no mapa de forma automática
+        this.searchCount.put(searchHistory, this.searchCount.getOrDefault(searchHistory, 0) + 1);
     }
+
     public List<String> getSearchHistory() {
-        return searchHistory;
+        return Collections.unmodifiableList(searchHistory);
     }
+
     public void setSearchHistory(List<String> searchHistory) {
-        this.searchHistory = searchHistory;
+        this.searchHistory = new ArrayList<>(searchHistory);
+        // Atualiza o mapa também ao trocar a lista inteira
+        this.searchCount.clear();
+        for (String s : searchHistory) {
+            this.searchCount.put(s, this.searchCount.getOrDefault(s, 0) + 1);
+        }
     }
+
     public Map<String, Integer> getSearchCount() {
-        return searchCount;
+        return Collections.unmodifiableMap(searchCount);
     }
+
     public void setSearchCount(Map<String, Integer> searchCount) {
-        this.searchCount = searchCount;
+        this.searchCount = new HashMap<>(searchCount);
     }
 
     public boolean isLocked() {
@@ -57,5 +66,30 @@ public class SearchLog {
 
     public void setLogName(String logName) {
         this.logName = logName;
+    }
+
+    // --- NOVOS MÉTODOS PARA EVITAR DATA CLASS ---
+
+    public String getMostFrequentSearch() {
+        return searchCount.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+
+    public int getUniqueSearchCount() {
+        return searchCount.size();
+    }
+
+    public void incrementNumUsages() {
+        this.numUsages = this.numUsages + 1;
+    }
+
+
+    public void clearHistory() {
+        this.searchHistory.clear();
+        this.searchCount.clear();
+        this.numUsages = 0;
     }
 }
